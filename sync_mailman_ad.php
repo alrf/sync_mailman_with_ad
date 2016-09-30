@@ -71,7 +71,7 @@ for ($i=0; $i<$data['count']; $i++) {
     }
 
     if(!empty($blocked_users[$v])){
-      $mail_blocked = $blocked_users[$v];
+      $mail_blocked = $all_users[$v];
       # remove these users from mailman
       $cl = "/usr/lib/mailman/bin/list_members $mmlist | grep -i -c $mail_blocked";
       $cmd = exec($cl);
