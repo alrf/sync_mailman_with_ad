@@ -57,7 +57,7 @@ for ($i=0; $i<$data['count']; $i++) {
 
     $mail = $all_users[$v];
 
-    $cl = "/usr/lib/mailman/bin/list_members $mmlist | grep -i -c $mail";
+    $cl = "/usr/lib/mailman/bin/list_members $mmlist | grep -i -c -x $mail";
     $cmd = exec($cl);
     if($cmd > 1){
       # duplicate, remove one address
@@ -73,7 +73,7 @@ for ($i=0; $i<$data['count']; $i++) {
     if(!empty($blocked_users[$v])){
       $mail_blocked = $all_users[$v];
       # remove these users from mailman
-      $cl = "/usr/lib/mailman/bin/list_members $mmlist | grep -i -c $mail_blocked";
+      $cl = "/usr/lib/mailman/bin/list_members $mmlist | grep -i -c -x $mail_blocked";
       $cmd = exec($cl);
       if($cmd == 1){
         $cd = "echo '$mail_blocked' | /usr/lib/mailman/bin/remove_members -n -f - $mmlist";
